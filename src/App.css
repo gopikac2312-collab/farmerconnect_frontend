@@ -1,0 +1,120 @@
+/* ================= ROOT / BASE ================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  background-color: #fff1ea;
+  color: #4b1f14;
+}
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= LINKS ================= */
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+/* ================= HEADINGS ================= */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* ================= BUTTONS ================= */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* ================= ROOT CONTAINER ================= */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ================= HERO SECTION ================= */
+.hero-section {
+  width: 100%;
+  min-height: calc(100vh - 70px); /* navbar height */
+  background-color: #fff1ea;
+  display: flex;
+  align-items: center;
+}
+
+.hero-row {
+  width: 100%;
+}
+
+/* ================= HERO TEXT ================= */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #4b1f14;
+}
+
+.hero-title span {
+  color: #e74c3c;
+}
+
+.hero-text {
+  font-size: 1.15rem;
+  color: #555;
+  max-width: 600px;
+}
+
+/* ================= HERO IMAGE ================= */
+.hero-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= LIGHT MODE SUPPORT ================= */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+    color: #213547;
+  }
+}
+
+

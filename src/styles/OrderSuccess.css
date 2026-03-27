@@ -1,0 +1,115 @@
+/* Full green background */
+.order-success-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Bigger success card */
+.order-success-card {
+  background: #ffffff;
+  padding: 60px 70px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 600px;      /* ⬅ bigger box */
+  width: 100%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+
+  animation: slideUpFade 0.9s ease-out forwards;
+}
+
+/* Main heading */
+.order-success-card h2 {
+  font-size: 34px;       /* ⬅ larger heading */
+  color: #2e7d32;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+/* Message text */
+.order-success-card p {
+  font-size: 18px;       /* ⬅ clearer message */
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* Order details highlight */
+.order-success-card .order-details {
+  margin-top: 20px;
+  font-size: 17px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Button link */
+.order-success-card a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 28px;
+  background-color: #2e7d32;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.order-success-card a:hover {
+  background-color: #256628;
+  transform: translateY(-2px);
+}
+
+/* Smooth slide-up animation */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Confetti container */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+/* Single confetti piece */
+.confetti span {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  opacity: 0.8;
+  animation: confettiFall 3s linear forwards;
+}
+
+/* Random colors */
+.confetti span:nth-child(odd) { background: #ffeb3b; }
+.confetti span:nth-child(even) { background: #ff5252; }
+.confetti span:nth-child(3n) { background: #4caf50; }
+.confetti span:nth-child(4n) { background: #2196f3; }
+
+/* Fall animation */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}

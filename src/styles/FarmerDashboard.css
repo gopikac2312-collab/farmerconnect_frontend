@@ -1,0 +1,195 @@
+/* ================= Root tokens (easy theming) ================= */
+:root {
+  --primary: #15803d;
+  --primary-dark: #14532d;
+  --danger: #dc2626;
+  --warning: #f59e0b;
+
+  --bg-page: #f4f8f5;
+  --bg-card: #ffffff;
+
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+
+  --border-soft: #e5e7eb;
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= Page ================= */
+.farmer-page {
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.farmer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================= Header ================= */
+.farmer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.farmer-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* Logout */
+.logout-btn {
+  background-color: var(--danger);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  opacity: 0.9;
+}
+
+/* ================= Section Card ================= */
+.section-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--text-main);
+}
+
+/* ================= Add Product Form ================= */
+.add-product-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.add-product-form input,
+.add-product-form button {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  font-size: 0.95rem;
+}
+
+.add-product-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.add-product-form button {
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.add-product-form button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* ================= Products Grid ================= */
+.farmer-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* ================= Product Card ================= */
+.farmer-product-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.farmer-product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Image */
+.farmer-product-image {
+  height: 140px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.farmer-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text */
+.product-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.product-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ================= Actions ================= */
+.product-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.edit-btn,
+.delete-btn {
+  flex: 1;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit-btn {
+  background-color: var(--warning);
+  color: #fff;
+}
+
+.edit-btn:hover {
+  opacity: 0.9;
+}
+
+.delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+.delete-btn:hover {
+  opacity: 0.9;
+}

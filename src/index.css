@@ -1,0 +1,145 @@
+
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= HTML / BODY ================= */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff1ea;
+  color: #4b1f14;
+  overflow-x: hidden;
+}
+
+/* ================= LINKS ================= */
+a {
+  text-decoration: none;
+  color: #646cff;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+/* ================= HEADINGS ================= */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+}
+
+/* ================= BUTTONS (SAFE) ================= */
+button:not(.dashboard-card) {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+button:not(.dashboard-card):hover {
+  border-color: #646cff;
+}
+
+button:not(.dashboard-card):focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* ================= NAVBAR ================= */
+.navbar-main {
+  width: 100%;
+  background-color: #2e7d32;
+  border-bottom: 2px solid #1b5e20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+/* ================= HERO SECTION ================= */
+.hero-section {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  margin-top: 70px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #4b1f14;
+}
+
+.hero-title span {
+  color: #e74c3c;
+}
+
+.hero-text {
+  font-size: 1.15rem;
+  color: #555;
+  max-width: 600px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-top: 20px;
+  }
+}
+
+/* ================= TAILWIND COMPONENTS (LAST) ================= */
+
+/* ================= IMAGES SAFETY FIX ================= */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

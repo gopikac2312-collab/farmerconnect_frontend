@@ -1,0 +1,109 @@
+/* Full page center */
+.edit-product {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f7f3, #e8f5ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card */
+.edit-product-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  padding: 35px 32px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Title */
+.edit-product-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1b7a4b;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Form */
+.edit-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input wrapper */
+.edit-product-form input,
+.edit-product-form textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: 10px;
+  border: 1.5px solid #dcdcdc;
+  font-size: 15px;
+  background: #fafafa;
+  transition: all 0.25s ease;
+}
+
+/* Focus effect */
+.edit-product-form input:focus,
+.edit-product-form textarea:focus {
+  outline: none;
+  border-color: #1b7a4b;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(27, 122, 75, 0.15);
+}
+
+/* Textarea */
+.edit-product-form textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+/* Button */
+.edit-product-form button {
+  margin-top: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, #1b7a4b, #2ea36a);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Button hover */
+.edit-product-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(27, 122, 75, 0.35);
+}
+
+/* Button active */
+.edit-product-form button:active {
+  transform: scale(0.98);
+}
+
+/* Loading */
+.loading-text {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

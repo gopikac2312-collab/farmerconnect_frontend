@@ -1,0 +1,161 @@
+/* Login.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body, html, #root {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #e8f5e9;
+}
+
+.left, .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.left {
+  background-color: #dcedc8;
+}
+
+.right {
+  background-color: #2e7d32;
+  color: white;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+.form-box input, .form-box select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-box button:hover {
+  background-color: #27632a;
+}
+
+.hyperlink {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #2e7d32;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.hyperlink:hover {
+  text-decoration: underline;
+}
+
+.right .text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.right .text a {
+  color: white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e8f5e9;
+}
+
+.auth-container {
+  position: relative;
+  width: 750px;
+  max-width: 90%;
+  min-height: 500px;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Forms container */
+.form-panel {
+  width: 50%;
+  padding: 50px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-container.active .login-panel {
+  transform: translateX(-100%);
+}
+
+.auth-container.active .register-panel {
+  transform: translateX(-100%);
+}
+
+/* Slider panel */
+.slider-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #28a745;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-container.active .slider-panel {
+  transform: translateX(-100%);
+}
+
+.slider-content {
+  text-align: center;
+  padding: 30px;
+}
