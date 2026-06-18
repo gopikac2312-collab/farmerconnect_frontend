@@ -1,95 +1,64 @@
-import React, { useEffect, useState } from "react";
-import API from "../api";
-import StarRating from "../components/StarRating";
-import AddReview from "../components/AddReview";
-import FarmerRatingSummary from "../components/FarmerRatingSummary";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom"; // Make sure useNavigate is also imported
+import "../styles/Reviews.css"; // We'll add matching styling
 
-export default function Reviews() {
-  const user = JSON.parse(localStorage.getItem("user"));
+function Reviews() {
+  const [reviewsList, setReviewsList] = useState([]);
 
-  const [reviews, setReviews] = useState([]);
-  const [page, setPage] = useState(1);
-  const [ordering, setOrdering] = useState("-created_at");
-
-  const fetchReviews = async (resetPage = false) => {
-  try {
-    const currentPage = resetPage ? 1 : page;
-    if (resetPage) setPage(1);
-
-    const res = await API.get(
-      `reviews/?page=${currentPage}&ordering=${ordering}`
-    );
-
-    setReviews(res.data.results || res.data);
-  } catch (error) {
-    console.error("Fetch reviews error:", error);
-  }
-};
+  // Static/Preset reviews to show by default
+  const defaultReviews = [
+    {
+      id: 1,
+      name: "Rajesh Kumar",
+      feedback: "FarmerConnect changed the way I sell my crop. I get fair prices and the payout is extremely fast! Highly recommended to all fellow farmers.",
+      date: "12 Jun 2026",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Anjali Nair",
+      feedback: "As a buyer, getting fresh vegetables directly from the farm is amazing. The quality is outstanding, and the customer service is superb.",
+      date: "08 Jun 2026",
+      rating: 5
+    }
+  ];
 
   useEffect(() => {
-    fetchReviews();
-  }, [page, ordering]);
+    // Load customer reviews from localStorage
+    const savedReviews = JSON.parse(localStorage.getItem("customReviews")) || [];
+    
+    // Merge both static defaults and user custom reviews
+    setReviewsList([...savedReviews, ...defaultReviews]);
+  }, []);
 
   return (
-    <div className="container mt-5">
-      <h2 className="mb-3">Reviews</h2>
+    <div className="reviews-page">
+      <div className="reviews-header">
+        <h1>Customer Reviews</h1>
+        <p>See what farmers and consumers are saying about FarmerConnect 🌱</p>
+      </div>
 
-      {/* ✅ BUYER: Add Review */}
-      {user?.role === "buyer" && (
-        <AddReview onReviewAdded={fetchReviews} />
-      )}
-
-      {/* ✅ FARMER: Rating Summary */}
-      {user?.role === "farmer" && (
-        <FarmerRatingSummary />
-      )}
-
-      {/* Sorting */}
-      <select
-        className="form-select mb-3"
-        value={ordering}
-        onChange={(e) => setOrdering(e.target.value)}
-      >
-        <option value="-created_at">Newest First</option>
-        <option value="created_at">Oldest First</option>
-        <option value="-rating">Highest Rating</option>
-        <option value="rating">Lowest Rating</option>
-      </select>
-
-      {/* Reviews List */}
-      {reviews.length === 0 && (
-        <p className="text-muted">No reviews available.</p>
-      )}
-
-      {reviews.map((r) => (
-        <div key={r.id} className="card mb-3 shadow-sm">
-          <div className="card-body">
-            <h6>{r.buyer || r.user}</h6>
-            <StarRating rating={r.rating} readOnly />
-            <p className="mt-2">{r.comment}</p>
-          </div>
-        </div>
-      ))}
-
-      {/* Pagination */}
-      <div className="d-flex justify-content-between mt-4">
-        <button
-          className="btn btn-outline-secondary"
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-        >
-          Previous
-        </button>
-
-        <button
-          className="btn btn-outline-secondary"
-          onClick={() => setPage(page + 1)}
-        >
-          Next
-        </button>
+      <div className="reviews-grid">
+        {reviewsList.length === 0 ? (
+          <p className="no-reviews">No reviews posted yet. Be the first!</p>
+        ) : (
+          reviewsList.map((review) => (
+            <div key={review.id} className="review-card">
+              <div className="review-stars">
+                {"★".repeat(review.rating)}
+                {"☆".repeat(5 - review.rating)}
+              </div>
+              <p className="review-text">"{review.feedback}"</p>
+              <div className="review-meta">
+                <h4 className="review-author">— {review.name}</h4>
+                <span className="review-date">{review.date}</span>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
 }
 
-
+export default Reviews;

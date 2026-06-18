@@ -96,3 +96,64 @@
     border-radius: 8px;
   }
 }
+/* Form styles inside the Payment Card */
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.address-form input,
+.address-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #dcdde1;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #f5f6fa;
+  transition: all 0.2s ease;
+}
+
+.address-form input:focus,
+.address-form textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Button styles */
+.back-btn {
+  background-color: #f1f2f6 !important;
+  color: #57606f !important;
+  margin: 0 !important;
+}
+
+.back-btn:hover {
+  background-color: #dfe4ea !important;
+}
+
+.cod-confirm-btn {
+  background-color: #4caf50 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.cod-confirm-btn:hover {
+  background-color: #43a047 !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+}

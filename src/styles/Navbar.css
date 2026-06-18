@@ -1,99 +1,96 @@
+/* ===== NAVBAR ===== */
 .navbar {
-  background-color: #2e7d32;
-  padding: 12px 0;
+  background-color: #1a5c2a;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .navbar-container {
-  width: 90%;
+  width: 92%;
+  max-width: 1280px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 60px;
+  gap: 1rem;
 }
 
 /* Logo */
 .logo {
   color: #fff;
-  font-weight: bold;
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin: 0;
 }
 
-/* Menu links */
+/* Nav links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .nav-links li a {
-  color: white;
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
+  font-size: 14px;
   font-weight: 500;
-  transition: 0.3s;
+  transition: color 0.2s;
 }
 
 .nav-links li a:hover {
-  color: #c8e6c9;
+  color: #fff;
 }
 
-/* Auth buttons */
-.auth-buttons {
+/* Right actions group */
+.navbar-actions {
   display: flex;
+  align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
-.btn {
-  padding: 6px 14px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* Login button */
-.btn.login {
-  background: white;
-  color: #2e7d32;
-}
-
-/* Register button */
-.btn.register {
-  background: #1b5e20;
-  color: white;
-}
-
-.btn.register:hover {
-  background: #145a18;
-}
-.weather-link {
+/* Cart button */
+.cart-btn {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: white;
-  font-weight: 500;
+  background: #fff;
+  color: #1a5c2a;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
 }
 
-.weather-link:hover {
-  color: #ffeb3b;
-}
-.cart-btn {
-  background: white;
-  color: #2e7d32;
-  padding: 8px 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 12px;
+.cart-btn:hover {
+  opacity: 0.88;
 }
 
 .cart-count {
-  background: red;
-  color: white;
-  padding: 2px 7px;
+  background: #e53e3e;
+  color: #fff;
   border-radius: 50%;
-  font-size: 12px;
-  margin-left: 5px;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
 }
-/* Weather Button */
-/* Weather Button */
+
+/* Weather button */
 .weather-nav-item {
   position: relative;
 }
@@ -101,22 +98,75 @@
 .weather-btn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #a5d6a7;
-  border-radius: 8px;
-  padding: 6px 12px;
+  gap: 5px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
   transition: background 0.2s;
 }
 
-.weather-btn:hover { background: #c8e6c9; }
-.weather-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.weather-btn:hover {
+  background: rgba(255,255,255,0.22);
+}
 
-/* Popup */
+.weather-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Auth buttons */
+.btn-logout {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
+}
+
+.btn-login {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-login:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.btn-register {
+  background: #fff;
+  color: #1a5c2a;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btn-register:hover {
+  opacity: 0.9;
+}
+
+/* ===== WEATHER POPUP (unchanged from original) ===== */
 .weather-popup {
   position: absolute;
   top: 48px;
@@ -143,7 +193,6 @@
   color: #888;
 }
 
-/* Header with icon */
 .weather-header {
   display: flex;
   align-items: center;
@@ -170,7 +219,6 @@
   margin: 2px 0 0;
 }
 
-/* Stats Grid */
 .weather-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -198,7 +246,6 @@
   margin-bottom: 10px;
 }
 
-/* Farming Tip */
 .farming-tip {
   border-left: 4px solid;
   background: #f9f9f9;
@@ -214,7 +261,6 @@
   line-height: 1.5;
 }
 
-/* 5-Day Forecast */
 .forecast-section {
   border-top: 1px solid #eee;
   padding-top: 10px;

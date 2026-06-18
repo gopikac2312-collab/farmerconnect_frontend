@@ -1,92 +1,12 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import "../styles/Navbar.css";
-
-// const Navbar = () => {
-//   return (
-//     <nav className="navbar">
-//       <div className="navbar-container">
-        
-//         {/* Logo */}
-//         <h2 className="logo">FarmerConnect</h2>
-
-//         {/* Menu */}
-//         <ul className="nav-links">
-//           <li><Link to="/">Home</Link></li>
-//           <li><Link to="/products">Products</Link></li>
-//           <li><Link to="/orders">Orders</Link></li>
-//           <li><Link to="/reviews">Reviews</Link></li>
-//           <li><Link to="/about">About</Link></li>
-//         </ul>
-
-//         {/* Auth Buttons */}
-//         <div className="auth-buttons">
-//           <Link to="/login" className="btn login">Login</Link>
-//           <Link to="/register" className="btn register">Register</Link>
-//         </div>
-
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import { WiDaySunny } from "react-icons/wi";
-// import "../styles/Navbar.css";
-
-// const Navbar = () => {
-//   return (
-//     <nav className="navbar">
-//       <div className="navbar-container">
-        
-//         {/* Logo */}
-//         <h2 className="logo">FarmerConnect</h2>
-
-//         {/* Menu */}
-//         <ul className="nav-links">
-//           <li><Link to="/home">Home</Link></li>
-//           <li><Link to="/buyer-product">Products</Link></li>
-//           <li><Link to="/buyer-orders">Orders</Link></li>
-          
-//           <li><Link to="/reviews">Reviews</Link></li>
-//           <Link to="/cart" className="cart-btn">
-//     🛒 Cart <span className="cart-count">2</span>
-//   </Link>
-
-//           {/* 🌦️ Weather Button */}
-//           {/* <li>
-//             <Link to="/weather" className="weather-link">
-//               <WiDaySunny size={24} /> Weather 
-//             </Link>
-//           </li> */}
-
-//           <li><Link to="/about">About Us</Link></li>
-//         </ul>
-
-//         {/* Auth Buttons */}
-//         <div className="auth-buttons">
-//           <Link to="/login" className="btn login">Login</Link>
-//           <Link to="/register/farmer" className="btn register">Register</Link>
-//         </div>
-
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { WiDaySunny, WiHumidity, WiStrongWind, WiRain } from "react-icons/wi";
 import "../styles/Navbar.css";
 
 const API_KEY = "d73556bd5bc9dfbe83ceeb5cfe70b125";
 
+// Helper functions (defined outside the component)
 const getFarmingTip = (weather) => {
   const condition = weather.weather[0].main.toLowerCase();
   const temp = weather.main.temp;
@@ -120,18 +40,46 @@ const formatDay = (timestamp) => {
 };
 
 const Navbar = () => {
+  // Navigation & Location Hooks
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Weather & UI States
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const isLoggedIn = !!localStorage.getItem("access");
+
+  // Smooth scroll click handler for "About Us"
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+    
+    if (location.pathname === "/" || location.pathname === "/home") {
+      // If already on the home page, scroll down smoothly
+      const element = document.getElementById("about");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If on a different page, go home first and pass scroll target in state
+      navigate("/", { state: { scrollToSection: "about" } });
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    navigate("/login");
+  };
+
   const fetchWeather = () => {
     if (showPopup) {
       setShowPopup(false);
       return;
     }
-
     setLoading(true);
     setError(null);
 
@@ -139,23 +87,20 @@ const Navbar = () => {
       async (position) => {
         const { latitude, longitude } = position.coords;
         try {
-          // Current weather
           const currentRes = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
           );
           const currentData = await currentRes.json();
           if (currentData.cod !== 200) throw new Error(currentData.message);
 
-          // 5-day forecast
           const forecastRes = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
           );
           const forecastData = await forecastRes.json();
 
-          // Pick one entry per day (at noon)
-          const daily = forecastData.list.filter((item) =>
-            item.dt_txt.includes("12:00:00")
-          ).slice(0, 5);
+          const daily = forecastData.list
+            .filter((item) => item.dt_txt.includes("12:00:00"))
+            .slice(0, 5);
 
           setWeather(currentData);
           setForecast(daily);
@@ -181,22 +126,30 @@ const Navbar = () => {
       <div className="navbar-container">
 
         {/* Logo */}
-        <h2 className="logo">FarmerConnect</h2>
+        <h2 className="logo">🌿 FarmerConnect</h2>
 
-        {/* Menu */}
+        {/* Nav Links */}
         <ul className="nav-links">
           <li><Link to="/home">Home</Link></li>
           <li><Link to="/buyer-product">Products</Link></li>
           <li><Link to="/buyer-orders">Orders</Link></li>
           <li><Link to="/reviews">Reviews</Link></li>
+          {/* Wrapped in an <li> tag to align correctly with other list items */}
+          <li><Link to="/" onClick={handleAboutClick}>About Us</Link></li>
+        </ul>
+
+        {/* Right side: Cart + Weather + Auth */}
+        <div className="navbar-actions">
+
+          {/* Cart */}
           <Link to="/cart" className="cart-btn">
             🛒 Cart <span className="cart-count">2</span>
           </Link>
 
-          {/* 🌦️ Weather Button */}
-          <li className="weather-nav-item">
+          {/* Weather */}
+          <div className="weather-nav-item">
             <button className="weather-btn" onClick={fetchWeather} disabled={loading}>
-              <WiDaySunny size={24} />
+              <WiDaySunny size={22} />
               {loading ? "Loading..." : "Weather"}
             </button>
 
@@ -208,7 +161,6 @@ const Navbar = () => {
                   <p className="weather-error">{error}</p>
                 ) : weather ? (
                   <>
-                    {/* Header */}
                     <div className="weather-header">
                       <img
                         src={getWeatherIcon(weather.weather[0].icon)}
@@ -221,7 +173,6 @@ const Navbar = () => {
                       </div>
                     </div>
 
-                    {/* Stats Grid */}
                     <div className="weather-grid">
                       <div className="weather-stat">
                         <WiDaySunny size={28} />
@@ -247,14 +198,12 @@ const Navbar = () => {
 
                     <p className="weather-feels">Feels like: {Math.round(weather.main.feels_like)}°C</p>
 
-                    {/* Farming Tip */}
                     {farmingTip && (
                       <div className="farming-tip" style={{ borderColor: farmingTip.color }}>
                         <p style={{ color: farmingTip.color }}>{farmingTip.tip}</p>
                       </div>
                     )}
 
-                    {/* 5-Day Forecast */}
                     {forecast.length > 0 && (
                       <div className="forecast-section">
                         <h4 className="forecast-title">5-Day Forecast</h4>
@@ -277,17 +226,19 @@ const Navbar = () => {
                 ) : null}
               </div>
             )}
-          </li>
+          </div>
 
-          <li><Link to="/about">About Us</Link></li>
-        </ul>
+          {/* Auth */}
+          {isLoggedIn ? (
+            <button className="btn-logout" onClick={handleLogout}>Logout</button>
+          ) : (
+            <>
+              <Link to="/login" className="btn-login">Login</Link>
+              <Link to="/register/farmer" className="btn-register">Register</Link>
+            </>
+          )}
 
-        {/* Auth Buttons */}
-        <div className="auth-buttons">
-          <Link to="/login" className="btn login">Login</Link>
-          <Link to="/register/farmer" className="btn register">Register</Link>
         </div>
-
       </div>
     </nav>
   );

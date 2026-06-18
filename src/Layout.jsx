@@ -50,6 +50,7 @@ import AddToCart from "./pages/AddtoCart";
 import Cart from "./pages/Cart";
 import OrderSuccess from "./pages/OrderSuccess";
 import BuyerOrders from "./pages/BuyerOrders";
+import PaymentCard from "./pages/paymentcard";
 
 
 function Layout() {
@@ -91,6 +92,7 @@ function Layout() {
         <Route path="/checkout"element={<Checkout/>}/>
       <Route path="/add-to-cart/:id" element={<AddToCart />} />
       <Route path="/cart"element={<Cart/>}/>
+     <Route path="/payment" element={<PaymentCard />} />
      
 
 
